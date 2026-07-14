@@ -1,4 +1,4 @@
-# NIELIT Chennai Chatbot (FREE - Powered by Groq)
+# Chatbot (FREE - Powered by Groq)
 
 100% FREE chatbot using Groq API. No credit card needed.
 
@@ -9,7 +9,7 @@
 1. User types a question in the chatbot
 2. Frontend sends it to Flask backend (`/chat` endpoint)
 3. Backend calls Groq AI using the **LLaMA 3.3 70B** model
-4. Groq AI processes the question using the built-in NIELIT knowledge
+4. Groq AI processes the question using the built-in organization knowledge
 5. Groq returns a clear, accurate answer in under 2 seconds
 6. Answer is displayed in the chat window
 
@@ -24,7 +24,7 @@
 4. Copy the key (starts with gsk_...)
 
 ### Step 2 - Install dependencies
-Open PowerShell in the nielit_chatbot folder and run:
+Open PowerShell in the chatbot folder and run:
 ```
 pip install groq flask flask-cors
 ```
@@ -64,16 +64,12 @@ Go to: http://127.0.0.1:5000
 
 ---
 
-## Contact NIELIT Chennai
-- Website: https://nielit.gov.in
-- Email: nielit-che@nielit.gov.in
-
 I'll break down this code section by section with clean, clear explanations.
 
 ---
 
 ## 📁 File Overview
-This is a **Flask web server** that powers a chatbot for NIELIT Chennai, using the **Groq AI API** to generate responses.
+This is a **Flask web server** that powers a chatbot for Organization, using the **Groq AI API** to generate responses.
 
 ---
 
@@ -127,12 +123,12 @@ client = Groq(
 ## 4️⃣ System Prompt
 
 ```python
-SYSTEM_PROMPT = """You are the official AI Assistant for NIELIT Chennai..."""
+SYSTEM_PROMPT = """You are the official AI Assistant for your organization..."""
 ```
 
 - This is a **multi-line string** (text block) that acts as the AI's instruction manual.
 - It tells the AI **who it is**, **what it knows**, and **how to behave**.
-- This is sent with every chat request so the AI always stays in the NIELIT context.
+- This is sent with every chat request so the AI always stays in the organization context.
 - Think of it as the AI's "job description" given before every conversation.
 
 ---
@@ -196,7 +192,7 @@ response = client.chat.completions.create(
 | `messages` | A list of messages sent to the AI — first the system instructions, then the user's question |
 
 The `role` field tells the AI who is speaking:
-- `"system"` → Background instructions (NIELIT context)
+- `"system"` → Background instructions (Organization context)
 - `"user"` → The student's actual question
 
 ---
@@ -207,7 +203,7 @@ The `role` field tells the AI who is speaking:
 reply_text = response.choices[0].message.content
 
 if not reply_text.strip():
-    reply_text = "I couldn't find specific information. Please check https://nielit.gov.in..., else contact Nielit Office"
+    reply_text = "I couldn't find specific information. Please check https://example.gov.in..., else contact  Office"
 
 return jsonify({'reply': reply_text.strip()})
 ```
