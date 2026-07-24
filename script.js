@@ -1,4 +1,4 @@
-// ===== NIELIT CHATBOT FRONTEND SCRIPT =====
+// ===== CHATBOT FRONTEND SCRIPT =====
 
 let isOpen = false;
 let isLoading = false;
@@ -66,7 +66,7 @@ function appendBotMessage(text, isError = false) {
   const formatted = formatBotText(text);
 
   wrapper.innerHTML = `
-    <div class="bot-message ${isError ? 'error-message' : ''}">${formatted}<span class="source-tag">NIELIT AI</span></div>
+    <div class="bot-message ${isError ? 'error-message' : ''}">${formatted}<span class="source-tag">Organization AI</span></div>
     <div class="msg-time">${getTime()}</div>
   `;
   chatBody.appendChild(wrapper);
@@ -136,7 +136,7 @@ async function sendMessage() {
   } catch (err) {
     hideTyping();
     appendBotMessage(
-      'Sorry, I\'m having trouble connecting right now. Please try again in a moment, or contact NIELIT Chennai directly.',
+      'Sorry, I\'m having trouble connecting right now. Please try again in a moment, or contact Organization Chennai directly.',
       true
     );
     console.error('Chat error:', err);
@@ -153,7 +153,7 @@ function clearChat() {
       <div class="welcome-avatar">🎓</div>
       <div class="welcome-text">
         <strong>Chat cleared! How can I help you?</strong>
-        <p>Ask me anything about NIELIT Chennai courses, syllabus, exam patterns, admissions, and more.</p>
+        <p>Ask me anything about Organization Chennai courses, syllabus, exam patterns, admissions, and more.</p>
       </div>
     </div>
   `;
