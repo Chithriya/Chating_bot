@@ -1,6 +1,5 @@
 """
-NIELIT Chennai Chatbot Backend
-Uses Groq API with llama-3.3-70b model to answer NIELIT-related queries.
+Uses Groq API with llama-3.3-70b model to answer organization-related queries.
 Sign up free at: https://console.groq.com
 """
 
@@ -16,8 +15,8 @@ client = Groq(
     api_key=os.environ.get("GROQ_API_KEY")
 )
 
-SYSTEM_PROMPT = """You are the official AI Assistant for NIELIT Chennai (National Institute of Electronics & Information Technology, Chennai).
-You help students, candidates, and visitors with questions about NIELIT courses, examinations, admissions, syllabi, fees, and related topics.
+SYSTEM_PROMPT = """You are the official AI Assistant for organization.
+You help students, candidates, and visitors with questions about organization courses, examinations, admissions, syllabi, fees, and related topics.
 
 Your knowledge covers:
 
@@ -26,7 +25,7 @@ IT LITERACY COURSES:
 - CCC (Course on Computer Concepts): 80 hours, intermediate level, 100 questions/90 mins, grades A/B/C/D/F, fees approx Rs.500
 - ECC (Expert Course on Computer Concepts): Advanced level
 
-NIELIT ACCREDITED COURSES:
+organization ACCREDITED COURSES:
 - O Level:
   * Duration: 1 year (2 semesters)
   * Eligibility: 10th pass or ITI certificate
@@ -63,19 +62,16 @@ EXAM PATTERN:
 - Online CBT for BCC/CCC
 
 ADMISSION PROCESS:
-- Apply online at https://student.nielit.gov.in
+- Apply online at https://student.organization.gov.in
 - Submit documents: photo, signature, eligibility certificate
 - Pay fees online
 - Exam conducted twice a year (January and July cycles)
 
-CONTACT NIELIT CHENNAI:
-- Website: https://nielit.gov.in
-- Chennai Email: nielit-che@nielit.gov.in
 
 Guidelines:
 1. Be helpful, accurate, and concise.
 2. Use bullet points or numbered lists for multiple items.
-3. Always direct users to https://nielit.gov.in for official verification.
+3. Always direct users to https://organization.gov.in for official verification.
 4. Be warm and encouraging to students.
 5. If unsure about something, say so honestly and direct them to the official website.
 6. Answer in clear simple English suitable for students at all levels.
@@ -107,7 +103,7 @@ def chat():
         reply_text = response.choices[0].message.content
 
         if not reply_text.strip():
-            reply_text = "I couldn't find specific information. Please check https://nielit.gov.in or contact nielit-che@nielit.gov.in"
+            reply_text = "I couldn't find specific information. Please check https://organization.gov.in or contact organization-che@organization.gov.in"
 
         print(f"Bot replied OK")
         return jsonify({'reply': reply_text.strip()})
@@ -135,5 +131,5 @@ if __name__ == '__main__':
     else:
         print(f"\n✅ Groq API Key found: {api_key[:12]}...\n")
 
-    print("🚀 NIELIT Chatbot Server starting at http://127.0.0.1:5000\n")
+    print("🚀 organization Chatbot Server starting at http://127.0.0.1:5000\n")
     app.run(debug=True, host='127.0.0.1', port=5000)
